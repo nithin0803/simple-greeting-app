@@ -28,7 +28,9 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v2
       - name: Build, tag, and push image to Amazon ECR
         run: |
-          docker build -t greeting-app:$IMAGE_TAG .
-          docker tag greeting-app:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker build -t greeting-app:latest .
+          docker tag greeting-app:latest $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
       - name: Push image to ECR
-        run: docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        run: |
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
