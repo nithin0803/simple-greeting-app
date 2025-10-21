@@ -7,7 +7,7 @@ on:
     branches: [main]
 jobs:
   build-check:
-    name: my first job
+    name: CI for greeting app
     runs-on: ubuntu-latest
 
     steps:
