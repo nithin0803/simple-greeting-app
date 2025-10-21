@@ -30,6 +30,7 @@ jobs:
         run: |
           docker build -t greeting-app:latest .
           docker tag greeting-app:latest $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker tag greeting-app:latest $ECR_REGISTRY/$ECR_REPOSITORY:latest
       - name: Push image to ECR
         run: |
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
