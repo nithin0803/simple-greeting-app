@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
 function App() {
-  const [name, setName] = useState('');
-  const [greeting, setGreeting] = useState('');
+  const [name, setName] = useState("");
+  const [greeting, setGreeting] = useState("");
 
   const handleButtonClick = () => {
     if (name.trim()) {
-      setGreeting(`Hello ${name}!`);
+      setGreeting(`Hello ${name}!, How are you doing`);
     } else {
-      setGreeting('Please enter a name!');
+      setGreeting("Please enter a name!");
     }
   };
 
