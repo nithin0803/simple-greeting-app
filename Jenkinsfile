@@ -15,10 +15,8 @@ pipeline {
   stage('Build & Push Image'){
         steps {
                 script {
-                    withCredentials([
-                        [$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-jenkins-creds', variable: 'AWS_CRED']
-                    ]) {
-                         sh "aws ecr get-login-password --region ${env.AWS_REGION} | docker login --username AWS --password-stdin ${env.AWS_ACCOUNT_ID}.dkr.ecr.${env.AWS_REGION}.amazonaws.com"
+                    withAWS(credentials: 'aws-jenkins-creds', region: env.AWS_REGION) { {
+                        sh "aws ecr get-login-password --region ${env.AWS_REGION} | docker login --username AWS --password-stdin ${env.AWS_ACCOUNT_ID}.dkr.ecr.${env.AWS_REGION}.amazonaws.com"
                     }
 
                     sh "docker build -t greeting-app:latest ."
