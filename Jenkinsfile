@@ -15,7 +15,7 @@ pipeline {
   stage('Build & Push Image'){
         steps {
                 script {
-                    withAWS(credentials: 'aws-jenkins-creds', region: env.AWS_REGION)  {
+                    withAWSCLI(credentials: 'aws-jenkins-creds', region: env.AWS_REGION)  {
                         sh "aws ecr get-login-password --region ${env.AWS_REGION} | docker login --username AWS --password-stdin ${env.AWS_ACCOUNT_ID}.dkr.ecr.${env.AWS_REGION}.amazonaws.com"
                     }
 
