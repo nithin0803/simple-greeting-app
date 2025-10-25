@@ -11,7 +11,8 @@ pipeline {
         IMAGE_TAG         = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
         ECR_IMAGE_URI     = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPOSITORY}:${IMAGE_TAG}"
     }
-    stages('Build & Push Image'){
+    stages{
+  stage('Build & Push Image'){
         steps {
                 script {
                     withCredentials([
@@ -45,4 +46,6 @@ pipeline {
             }
 
     }
+    }
+  
 }
